@@ -1,15 +1,18 @@
 <template>
-  <h1>My Reaction Timer</h1>
-  <button
-    @click="start"
-    :disabled="isPlaying"
-  >
-    Play
-  </button>
-  <Block
-    v-if="isPlaying"
-    :delay="delay"
-  />
+  <div class="main">
+    <h1>My Reaction Timer</h1>
+    <button
+      @click="start"
+      :disabled="isPlaying"
+    >
+      Play
+    </button>
+    <Block
+      v-if="isPlaying"
+      :delay="delay"
+      @playEnd="endPlaying"
+    />
+  </div>
 </template>
 
 <script>
@@ -31,6 +34,9 @@ export default {
       this.isPlaying = true;
       console.log(this.delay);
     },
+    endPlaying() {
+      this.isPlaying = false;
+    },
   },
 };
 </script>
@@ -44,16 +50,25 @@ export default {
   margin-top: 70px;
   font-family: "Times New Roman", Times, serif;
   font-weight: 300;
-  color: darkgreen;
+  color: rgb(62, 120, 62);
+}
+.main {
+  padding: 20px;
+  border-radius: 20px;
+  border: 2px solid rgb(209, 206, 206);
 }
 button {
   width: 70px;
   height: 30px;
-  background-color: rgb(19, 121, 200);
+  background-color: rgba(107, 111, 115, 0.806);
   border: 1px solid green;
   color: white;
+  border-radius: 10px;
+}
+button:hover {
+  cursor: pointer;
 }
 button:disabled {
- opacity: 0.4;
+  opacity: 0.4;
 }
 </style>
